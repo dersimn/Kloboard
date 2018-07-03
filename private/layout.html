@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://github.com/ultimatedelman/autogrow/raw/master/autogrow.min.js"></script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+				displayMath: [  ],
+				processEscapes: true
+			}
+		});
+	</script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
+	
+	<style>
+		body {
+			padding-top: 71px;
+			padding-bottom: 53px;
+		}
+		.message-form {
+			display: flex;
+			width: 100%;
+		}
+		@media (max-width: 768px) {
+			.message-form {
+				margin: 0;
+			}
+		}
+		.message-input {
+			flex-grow: 1;
+			margin-right: 10px;
+		}
+		.bubble {
+			background-color: #ededed;
+			margin-bottom: 20px;
+			padding: 20px;
+			border-radius: 20px;
+			text-align: justify;
+			position: relative;
+		}
+		.bubble-info {
+			color: #b0b0b0;
+			position: absolute;
+			top: 0px;
+			right: 20px;
+		}
+		.bubble-message p {
+			margin-bottom: 0;
+		}
+	</style>
+	
+	<script>
+		$(function(){
+			var converter = new showdown.Converter({
+				tables: true,
+				strikethrough: true
+			});
+			$(".bubble-message").each(function(){
+				var text = $(this).text();
+				var html = $(this).html( converter.makeHtml(text) );
+			});
+			
+			$(".message-form > textarea").autogrow({
+			    animate: false
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+	    	<div class="navbar-header">
+				<a class="navbar-brand" href="#">💩 KloBoard 💩</a>
+    		</div>
+	  	</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+		  		<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et consectetur turpis. Curabitur tempor sit amet lacus tristique mollis.</div>
+		  		</div>
+		  		<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">Aenean sed mi at nunc vestibulum varius quis nec risus. Suspendisse felis sapien, condimentum nec ipsum vitae, laoreet bibendum arcu. Phasellus eros ligula, pellentesque id tincidunt a, pharetra quis risus. Nullam convallis ornare laoreet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+			  	</div>
+			  	<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">$\rm\LaTeX$</div>
+			  	</div>
+			  	<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">😵😄</div>
+			  	</div>
+			  	<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">Just a few things using *markdown*.</div>
+			  	</div>
+			  	<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">
+    var s = "JavaScript syntax highlighting";
+    alert(s);
+				</div>
+			  	</div>
+			  	<div class="bubble">
+			  		<div class="bubble-info">2017-05-12 15:50:12</div>
+			  		<div class="bubble-message">#😵😄</div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+	
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<form class="navbar-form message-form">
+			<!--<input type="text" class="form-control message-input" placeholder="Message">-->
+			<textarea class="form-control message-input" rows="1" placeholder="Message"></textarea>
+  			<button type="submit" class="btn btn-default">Send</button>
+		</form>
+	</nav>
+</body>
+</html>
